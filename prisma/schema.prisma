@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  firstName    String
+  lastName     String
+  email     String   @unique
+  passwordHash String
+  memorials    Memorial[]
+}
+
+model Memorial {
+  id        String @id @default(uuid())
+  publicId  String @unique
+  name      String?
+  mainImage String? 
+  obituary  String?
+  links     String?
+  birthDate String?
+  deathDate String?
+  settings  String?
+
+  ownerId  String?
+  owner    User?     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

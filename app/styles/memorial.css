@@ -1,0 +1,93 @@
+.memorial-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: inherit;
+  }
+  
+  .memorial-header {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .memorial-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .memorial-header .home-link {
+    font-family: var(--font-display);
+    font-size: 3rem;
+  }
+  
+  .memorial-header .home-link a {
+    color: var(--color-foreground);
+  }
+  
+  .memorial-header .home-link a:hover {
+    text-decoration: none;
+  }
+  
+  .memorial-header .logo-medium {
+    display: none;
+  }
+  
+  .memorial-header a:hover {
+    text-decoration-style: wavy;
+    text-decoration-thickness: 1px;
+  }
+  
+  .memorial-header .user-info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    white-space: nowrap;
+  }
+  
+  .memorial-main {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    flex: 1 1 100%;
+  }
+  
+  .memorial-main .container {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .memorial-list {
+    max-width: 12rem;
+  }
+  
+  .memorial-outlet {
+    flex: 1;
+  }
+  
+  .memorial-footer {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+  
+  @media print, (min-width: 640px) {
+    .memorial-header .logo {
+      display: none;
+    }
+  
+    .memorial-header .logo-medium {
+      display: block;
+    }
+  
+    .memorial-main {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+  
+  @media (max-width: 639px) {
+    .memorial-main .container {
+      flex-direction: column;
+    }
+  }
+  
