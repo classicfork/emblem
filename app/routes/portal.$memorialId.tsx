@@ -8,15 +8,6 @@ export default function MemorialPortalRoute() {
 
     return (
         <div>
-            <div className="flex justify-between my-5">
-                <Link to="../home" className="mx-3 px-4 py-1 text-blue-100 hover:bg-blue-500 active:bg-blue-600 bg-slate-400">
-                    {"< Back to Home"}
-                </Link>
-                <Link to="../manageprofile" className="mx-3 px-4 py-1 text-blue-100 hover:bg-blue-500 active:bg-blue-600 bg-slate-400">
-                    Manage Your Profile
-                </Link>
-            </div>
-            
             <div className="flex justify-center space-x-4">
                 <NavLink
                     to={"/portal/" + params.memorialId + "/view"}

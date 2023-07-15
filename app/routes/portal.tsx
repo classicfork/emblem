@@ -1,6 +1,6 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Form, Link, Outlet, useLoaderData } from "@remix-run/react";
+import { Form, Link, Outlet, useHref, useLoaderData, useParams, useResolvedPath, useRouteLoaderData } from "@remix-run/react";
 import { db } from "~/utils/db.server";
 import { getUser, requireUserId } from "~/utils/session.server";
 
@@ -10,13 +10,15 @@ export const loader = async ({ request }: LoaderArgs) => {
 
   const memorials = await db.memorial.findMany({ where: { ownerId: user?.id } });
 
-  return json({ user, memorials });
+  return json({ user, memorials, url: request.url });
 }
 
 export default function PortalRoute() {
   const data = useLoaderData<typeof loader>();
   const user = data.user!;
-  console.log(data.user);
+  const params = useParams();
+  // console.log(data.user);
+  console.log(data.url.includes("manageprofile"));
 
   return (
     <div className="flex h-full min-h-screen flex-col">
@@ -34,7 +36,24 @@ export default function PortalRoute() {
           </button>
         </Form>
       </header>
-      <Outlet/>
+      <main>
+        <div className="flex justify-between my-5">
+            { 
+              data.url.includes("manageprofile") || params.memorialId != null ?
+              <Link to="../portal/home" className="mx-3 px-4 py-1 text-blue-100 hover:bg-blue-500 active:bg-blue-600 bg-slate-400">
+                  {"< Back to Home"}
+              </Link> : 
+              <div></div>
+            }
+            { 
+              !data.url.includes("manageprofile") ?
+                <Link to="/portal/manageprofile" className="mx-3 px-4 py-1 text-blue-100 hover:bg-blue-500 active:bg-blue-600 bg-slate-400">
+                  Manage Your Profile
+                </Link> :
+                <div></div>}
+        </div>
+        <Outlet/>
+      </main>
     </div>
   )
 }

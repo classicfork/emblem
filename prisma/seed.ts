@@ -40,7 +40,7 @@ function getMemorials() {
             publicId: "b",
             name: "Dennis Keith Myres",
             obituary: "An icelandic legend, cut from some tough cloth.",
-            links: '{"familySearch": "familysearch.org", "publicObituary": "google.com"}',
+            // links: '{"familySearch": "familysearch.org", "publicObituary": "google.com"}',
             birthDate: '6/15/1938',
             deathDate: '5/18/2017',
             mainImage: 'b.jpeg'

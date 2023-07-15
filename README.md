@@ -4,6 +4,15 @@
 
 ## Development
 
+Local db:
+```sh
+npx prisma db push
+```
+
+```sh
+npx prisma db seed
+```
+
 From your terminal:
 
 ```sh

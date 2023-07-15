@@ -99,6 +99,86 @@ export async function getUser(request: Request) {
   }
 }
 
+export async function updateUserEmail(userId: string, newEmail: string) {
+  const findUser = await db.user.findFirst(
+    {
+      select: {
+        email: true
+      }
+    });
+  if (findUser) {
+    throw "EXISTING EMAIL"
+  }
+
+  try {
+    const user = await db.user.update({
+      where: {
+        id: userId
+      },
+      data: {
+        email: newEmail
+      }
+    });
+    return user;
+  } catch (e) {
+    console.log(e);
+    throw "something went wrong";
+  }
+}
+
+export async function updateUserNames(userId: string, firstName: string, lastName: string) {
+  try {
+    const user = await db.user.update({
+      where: {
+        id: userId
+      },
+      data: {
+        firstName,
+        lastName
+      }
+    });
+    return user;
+  } catch (e) {
+    console.log(e);
+    throw "something went wrong";
+  }
+}
+
+export async function updatePassword(userId: string, newPassword: string) {
+  const user = await db.user.findUnique({
+    where: { id: userId },
+  });
+
+  if (!user) {
+    throw "something went wrong";
+  }
+
+  const matchesPassword = await bcrypt.compare(
+    newPassword,
+    user?.passwordHash
+  );
+
+  if (matchesPassword) {
+    throw "SAME PASSWORD";
+  }
+  
+  try {
+    const newPasswordHash = await bcrypt.hash(newPassword, 10);
+    const user = await db.user.update({
+      where: {
+        id: userId
+      },
+      data: {
+        passwordHash: newPasswordHash
+      }
+    });
+    return user;
+  } catch (e) {
+    console.log(e);
+    throw "something went wrong. please try again laster.";
+  }
+}
+
 export async function logout(request: Request) {
   const session = await getUserSession(request);
   return redirect("/login", {
