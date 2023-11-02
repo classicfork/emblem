@@ -87,16 +87,16 @@ export default function Login() {
   const [searchParams] = useSearchParams();
   return (
     <div>
-      <header className="flex items-center justify-between bg-slate-200 p-4 text-white">
-        <Link to="/" className="text-3xl font-bold text-gray-600">Memorial</Link>
+      <header className="flex items-center justify-center bg-slate-200 p-4 text-white">
+        <Link to="/" className="text-3xl font-luminari font-bold text-gray-600">Memorial</Link>
         <div></div>
         <div></div>
       </header>
       <main>
-        <div className="flex min-h-full flex-col justify-center">
-          <div className="flex-col items-center content w-100 h-100 bg-slate-200 p-10">
+        <div className="flex justify-center min-h-full">
+          <div className="flex-col w-100 h-100 p-10">
             <div className="m-10" data-light="">
-              <h1 className="text-3xl font-bold text-gray-600 place-self-center my-4">Login</h1>
+              <h3 className="text-lg text-center font-bold text-gray-600 my-4">Sign In</h3>
               <form method="post">
                 <input
                   type="hidden"
@@ -106,11 +106,11 @@ export default function Login() {
                   }
                 />
                 <div>
-                  <label htmlFor="email-input" className="block text-sm font-medium text-gray-700">Email</label>
+                  <label htmlFor="email-input" className="text-sm font-medium text-gray-700">Email</label>
                   <div className="mt-1">
                     <input
                       type="text"
-                      className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+                      className="rounded border border-gray-500 px-2 py-1 text-lg"
                       id="email-input"
                       name="email"
                       defaultValue={actionData?.fields?.email}
@@ -135,11 +135,11 @@ export default function Login() {
                   
                 </div>
                 <div className="py-3">
-                  <label htmlFor="password-input" className="block text-sm font-medium text-gray-700">Password</label>
+                  <label htmlFor="password-input" className="text-sm font-medium text-gray-700">Password</label>
                   <div className="mt-1">
                     <input
                       id="password-input"
-                      className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
+                      className="rounded border border-gray-500 px-2 py-1 text-lg"
                       name="password"
                       type="password"
                       defaultValue={actionData?.fields?.password}
@@ -173,13 +173,13 @@ export default function Login() {
                     </p>
                   ) : null}
                 </div>
-                <button type="submit" className="button rounded bg-slate-400 px-4 py-2 text-blue-800 hover:bg-blue-500 active:bg-blue-600">
+                <button type="submit" className="button rounded w-full bg-blue-400 px-4 py-2 text-white hover:bg-blue-500 active:bg-blue-600">
                   Submit
                 </button>
               </form>
             </div>
             <div className="flex justify-center">
-              <Link to={"/createaccount" + (searchParams.get("redirectTo") != null ? "?redirectTo=" + searchParams.get("redirectTo") : "")} className="text-sky-800 underline">Don't have an account? Create one here</Link>
+              <span>Need an account? <Link to={"/createaccount" + (searchParams.get("redirectTo") != null ? "?redirectTo=" + searchParams.get("redirectTo") : "")} className="text-sky-800 underline">Sign up</Link></span>
             </div>
           </div>
         </div>

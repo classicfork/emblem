@@ -1,7 +1,7 @@
 export default function MemorialIndexRoute() {
     return (
       <div className="flex justify-center">
-        <div className="flex-col items-center max-w-md px-3">
+        <div className="shadow-slate-800 items-center max-w-md px-5 py-5">
           <div className="py-3 flex justify-center">
             <img src={'b.jpeg'} alt="Keith"/>
           </div>
