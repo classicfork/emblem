@@ -23,10 +23,9 @@ export default function MemorialRoute() {
 
   return (
     <div>
-      <header className="flex items-center justify-between bg-slate-200 p-4 text-white">
-        <h1 className="text-3xl font-bold text-gray-600">Emblem</h1>
+      <div className="px-5 py-5">    
         {data.user ? (
-            <Link to={"../portal"} className="rounded bg-slate-600 px-4 py-2 text-blue-100 hover:bg-blue-500 active:bg-blue-600">My Portal</Link>
+            <Link to={"../portal"} className="rounded text-white">My Portal</Link>
           ) : (
             <div></div>
           )}
@@ -34,17 +33,17 @@ export default function MemorialRoute() {
             <Form action="/logout" method="post">
               <button
                 type="submit"
-                className="rounded bg-slate-600 px-4 py-2 text-blue-100 hover:bg-blue-500 active:bg-blue-600"
+                className="rounded text-white"
               >
                 Logout
               </button>
           </Form>
           ) : (
-            <Link to={"/login?redirectTo=/memorial/" + params.memorialId} className="rounded bg-slate-400 px-4 py-2 text-blue-800 hover:bg-blue-500 active:bg-blue-600">Login/Create Account</Link>
+            <Link to={"/login?redirectTo=/memorial/" + params.memorialId} className="rounded text-white">Sign In</Link>
           )}
-      </header>
+      </div>
       <main>
-        <div className="flex justify-center">
+        <div className="flex justify-center mr-8 ml-8">
           <Outlet />
         </div>
       </main>

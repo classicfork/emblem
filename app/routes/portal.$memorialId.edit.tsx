@@ -89,7 +89,7 @@ export default function EditMemorialRoute() {
             <div className="py-2">
               <label>
                 {data.memorial?.mainImage ? 
-                  (<img src={'b.jpeg'} alt="Main"/>) : 
+                  (<img src={'http://localhost:3000/b.jpeg'} alt="Main"/>) : 
                   (<div></div>)
                 }
                 Image: <input type="file" id="mainImg" name="mainImage" accept="image/png, image/jpeg" />

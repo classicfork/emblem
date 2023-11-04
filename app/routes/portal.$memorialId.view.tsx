@@ -33,6 +33,8 @@ export default function MemorialPortalRoute() {
   const params = useParams();
   //const image = data.memorial?.mainImage ? require(data.memorial.mainImage) : "";
 
+  console.log(data.memorial);
+
   return (
     <div>
       <div className="flex justify-center">
@@ -41,7 +43,7 @@ export default function MemorialPortalRoute() {
             <div className="flex-col items-center max-w-md px-3">
               <div className="py-3 flex justify-center">
                 {data.memorial?.mainImage ? 
-                  (<img src={`/public/${data.memorial.mainImage!}`} alt="Main"/>) : 
+                  (<img src={`http://localhost:3000/${data.memorial.mainImage}`} alt="Main"/>) : 
                   (<div></div>)
                 }
               </div>

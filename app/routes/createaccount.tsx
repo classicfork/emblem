@@ -32,7 +32,7 @@ function validatePassword(password: string) {
 
 function validateUrl(url: string) {
   const urls = [new RegExp("/portal"), new RegExp("/"), new RegExp("https://remix.run"), new RegExp(`^/memorial/(w*)$`)]; // TODO: need to use regex or something
-  for (let urlRegex of urls) {
+  for (const urlRegex of urls) {
     console.log(urlRegex);
     if (urlRegex.test(url)) {
       console.log('HOORaH');
@@ -67,6 +67,7 @@ export const action = async ({ request }: ActionArgs) => {
   }
 
   const fields = { firstName, lastName, password, email };
+  
   const fieldErrors = {
     firstName: validateName(firstName),
     lastName: validateName(lastName),
@@ -91,6 +92,7 @@ export const action = async ({ request }: ActionArgs) => {
       formError: `User with email ${email} already exists`,
     });
   }
+  
   const user = await register({ firstName, lastName, email, password });
   if (!user) {
     return badRequest({

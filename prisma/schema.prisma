@@ -16,7 +16,7 @@ model User {
   updatedAt    DateTime @updatedAt
   firstName    String
   lastName     String
-  email     String   @unique
+  email        String   @unique
   passwordHash String
   memorials    Memorial[]
 }
@@ -31,6 +31,7 @@ model Memorial {
   birthDate String?
   deathDate String?
   settings  String?
+  imageId   String?
 
   ownerId  String?
   owner    User?     @relation(fields: [ownerId], references: [id], onDelete: Cascade)

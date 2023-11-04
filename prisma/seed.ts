@@ -35,6 +35,13 @@ function getMemorials() {
     return [
         {
             publicId: "a",
+            name: "Lebron James",
+            obituary: "A famous basketball player.",
+            // links: '{"familySearch": "familysearch.org", "publicObituary": "google.com"}',
+            birthDate: '6/15/1982',
+            deathDate: '5/18/2022',
+            mainImage: 'b.png',
+            imageId: "12345",
         },
         {
             publicId: "b",
@@ -43,13 +50,8 @@ function getMemorials() {
             // links: '{"familySearch": "familysearch.org", "publicObituary": "google.com"}',
             birthDate: '6/15/1938',
             deathDate: '5/18/2017',
-            mainImage: 'b.jpeg'
-        },
-        {
-            publicId: "c",
-        },
-        {
-            publicId: "d",
+            mainImage: 'b.jpeg',
+            imageId: "56789",
         },
     ]
 }

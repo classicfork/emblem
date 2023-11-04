@@ -1,4 +1,4 @@
-import { Link, useLocation } from "@remix-run/react";
+import { useLocation } from "@remix-run/react";
 import { NavLink, Outlet, useParams } from "@remix-run/react";
 
 export default function MemorialPortalRoute() {

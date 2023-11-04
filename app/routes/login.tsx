@@ -9,6 +9,9 @@ import type {
 
   import { badRequest } from "~/utils/request.server";
   import { createUserSession, login } from "~/utils/session.server";
+  import Toolbar from "@mui/material/Toolbar";
+  import AppBar from "@mui/material/AppBar";
+  import { Box, IconButton, ListItemIcon, Menu, MenuItem, Typography } from "@mui/material";
 
 function validateEmail(email: string) {
   const regex = new RegExp('^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,6})*$');
@@ -27,7 +30,7 @@ function validatePassword(password: string) {
 
 function validateUrl(url: string) {
   const urls = [new RegExp("/portal"), new RegExp("/"), new RegExp("https://remix.run"), new RegExp(`^/memorial/(w*)$`)]; // TODO: need to use regex or something
-  for (let urlRegex of urls) {
+  for (const urlRegex of urls) {
     console.log(urlRegex);
     if (urlRegex.test(url)) {
       console.log('HOORaH');
@@ -87,11 +90,29 @@ export default function Login() {
   const [searchParams] = useSearchParams();
   return (
     <div>
-      <header className="flex items-center justify-center bg-slate-200 p-4 text-white">
-        <Link to="/" className="text-3xl font-luminari font-bold text-gray-600">Memorial</Link>
-        <div></div>
-        <div></div>
-      </header>
+      {/* <header>
+      <AppBar position="fixed">
+        <Toolbar className="flex justify-between">
+          <div className="flex">
+            <div>
+              <img className="wx-16 wy-16" src={'http://localhost:3000/emblem-light.png'} alt="emblem-logo" />
+            </div>
+            <MenuItem style={{ marginLeft: 18 }}>
+              <Link to={`/`}>Home</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to={`/products`}>Products</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to={`/story`}>Our Story</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to={`/faq`}>FAQ</Link>
+            </MenuItem>
+          </div>
+        </Toolbar>
+      </AppBar>
+      </header> */}
       <main>
         <div className="flex justify-center min-h-full">
           <div className="flex-col w-100 h-100 p-10">

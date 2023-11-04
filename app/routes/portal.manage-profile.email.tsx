@@ -1,4 +1,4 @@
-import { ActionArgs, LoaderArgs, json, redirect } from "@remix-run/node";
+import { type ActionArgs, type LoaderArgs, json, redirect } from "@remix-run/node";
 import { Form, useActionData, useLoaderData } from "@remix-run/react";
 import { badRequest } from "~/utils/request.server";
 import { getUser, getUserId, updateUserEmail } from "~/utils/session.server";

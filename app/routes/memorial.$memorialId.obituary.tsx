@@ -43,7 +43,7 @@ export default function MemorialRoute() {
         <div className="flex-col items-center max-w-md px-3">
           <div className="py-3 flex justify-center">
             {data.memorial?.mainImage ? 
-              (<img src={`${data.memorial.mainImage!}`} alt="Main"/>) : 
+              (<img src={`http://localhost:3000/${data.memorial.mainImage!}`} alt="Main"/>) : 
               (<div></div>)
             }
           </div>
