@@ -25,7 +25,7 @@ export default function MemorialRoute() {
     <div>
       <div className="px-5 py-5">    
         {data.user ? (
-            <Link to={"../portal"} className="rounded text-white">My Portal</Link>
+            <Link to={"../"} className="rounded text-white">My Portal</Link>
           ) : (
             <div></div>
           )}

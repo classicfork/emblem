@@ -1,5 +1,4 @@
-import { useLocation } from "@remix-run/react";
-import { NavLink, Outlet, useParams } from "@remix-run/react";
+import { useLocation, NavLink, Outlet, useParams } from "@remix-run/react";
 
 export default function MemorialPortalRoute() {
     const params = useParams();
@@ -8,7 +7,7 @@ export default function MemorialPortalRoute() {
 
     return (
         <div>
-            <div className="flex justify-center space-x-4">
+            <div className="flex justify-center space-x-4 mt-20">
                 <NavLink
                     to={"/portal/" + params.memorialId + "/view"}
                     className={(location === 'view' || location === 'edit' ?

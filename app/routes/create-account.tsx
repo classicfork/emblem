@@ -119,7 +119,7 @@ export default function Login() {
         <div className="flex min-h-full flex-col justify-center">
           <div className="flex-col items-center content w-100 h-100 bg-slate-200 p-10">
             <div className="m-10" data-light="">
-              <h1 className="text-3xl font-bold text-gray-600 place-self-center my-4">Create Account</h1>
+              <h1 className="text-3xl font-bold text-gray-600 place-self-center my-4">Create portal</h1>
               <form method="post">
                 <input
                   type="hidden"
@@ -258,7 +258,7 @@ export default function Login() {
               </form>
             </div>
             <div className="flex justify-center">
-              <Link to={"/login" + (searchParams.get("redirectTo") != null ? "?redirectTo=" + searchParams.get("redirectTo") : "")} className="text-sky-800 underline">Already haven account? Log in here</Link>
+              <Link to={"/login" + (searchParams.get("redirectTo") != null ? "?redirectTo=" + searchParams.get("redirectTo") : "")} className="text-sky-800 underline">Already haven portal? Log in here</Link>
             </div>
           </div>
         </div>

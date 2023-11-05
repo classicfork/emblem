@@ -90,7 +90,7 @@ export async function getUser(request: Request) {
   
   try {
     const user = await db.user.findUnique({
-      select: { id: true, email: true, firstName: true, lastName: true },
+      select: { id: true, email: true, firstName: true, lastName: true, memorials: true },
       where: { id: userId },
     });
     return user;
@@ -135,6 +135,25 @@ export async function updateUserNames(userId: string, firstName: string, lastNam
       data: {
         firstName,
         lastName
+      }
+    });
+    return user;
+  } catch (e) {
+    console.log(e);
+    throw "something went wrong";
+  }
+}
+
+export async function updateUserData(userId: string, firstName: string, lastName: string, email: string) {
+  try {
+    const user = await db.user.update({
+      where: {
+        id: userId
+      },
+      data: {
+        firstName,
+        lastName,
+        email
       }
     });
     return user;

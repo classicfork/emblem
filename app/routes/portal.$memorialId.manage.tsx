@@ -3,7 +3,7 @@ export default function ManageMemorialPortalRoute() {
     // console.log(data);
 
     return (
-      <div>
+      <div className="flex justify-center">
         <p>Manage Memorial!</p>
       </div>
     );

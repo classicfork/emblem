@@ -54,32 +54,29 @@ export default function App() {
                 <img className="pt-1 pl-4 wx-14 wy-14 w-5/6" src={'http://localhost:3000/emblem-light.png'} alt="emblem-logo" />
               </div>
               <MenuItem style={{ marginLeft: 18 }}>
-                <NavLink to={`/`}>Home</NavLink>
+                <NavLink style={{color: 'white'}} to={`/`}>Home</NavLink>
               </MenuItem>
               <MenuItem>
-                <NavLink to={`/products`}>Products</NavLink>
+                <NavLink style={{color: 'white'}} to={`/products`}>Products</NavLink>
               </MenuItem>
               <MenuItem>
-                <NavLink to={`/story`}>Our Story</NavLink>
+                <NavLink style={{color: 'white'}} to={`/story`}>Our Story</NavLink>
               </MenuItem>
               <MenuItem>
-                <NavLink to={`/faq`}>FAQ</NavLink>
+                <NavLink style={{color: 'white'}} to={`/faq`}>FAQ</NavLink>
               </MenuItem>
             </div>
             <div className="flex justify-end">
               {user ?
                 <div className="flex">
                   <MenuItem>
-                    <NavLink to={`/portal/home`}>Memorials</NavLink>
+                    <NavLink style={{color: 'white'}} to={`/portal/home`}>Profile</NavLink>
                   </MenuItem>
-                  <MenuItem>
-                    <NavLink to={`/portal/manage-profile`}>Profile</NavLink>
-                  </MenuItem>
-                  <Avatar sizes="" style={{ backgroundColor: 'rgb(253, 126, 151)' }}>{user.firstName[0]}{user.lastName[0]}</Avatar>
+                  <Avatar style={{ backgroundColor: 'rgb(253, 126, 151)' }}>{user.firstName[0]}{user.lastName[0]}</Avatar>
                 </div>
                 :
                 <MenuItem>
-                  <NavLink to={`/login`}>Sign In</NavLink>
+                  <NavLink style={{color: 'white'}} to={`/login`}>Sign In</NavLink>
                 </MenuItem>
               }
             </div>

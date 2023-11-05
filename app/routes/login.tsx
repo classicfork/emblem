@@ -1,17 +1,14 @@
 import type {
-    ActionArgs,
-  } from "@remix-run/node";
-  import {
-    Link,
-    useActionData,
-    useSearchParams,
-  } from "@remix-run/react";
+  ActionArgs,
+} from "@remix-run/node";
+import {
+  Link,
+  useActionData,
+  useSearchParams,
+} from "@remix-run/react";
 
-  import { badRequest } from "~/utils/request.server";
-  import { createUserSession, login } from "~/utils/session.server";
-  import Toolbar from "@mui/material/Toolbar";
-  import AppBar from "@mui/material/AppBar";
-  import { Box, IconButton, ListItemIcon, Menu, MenuItem, Typography } from "@mui/material";
+import { badRequest } from "~/utils/request.server";
+import { createUserSession, login } from "~/utils/session.server";
 
 function validateEmail(email: string) {
   const regex = new RegExp('^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,6})*$');
@@ -75,11 +72,11 @@ export const action = async ({ request }: ActionArgs) => {
   const user = await login({ email, password });
   console.log({ user });
   if (!user) {
-      return badRequest({
-        fieldErrors: null,
-        fields,
-        formError:
-          "Email/Password combination is incorrect",
+    return badRequest({
+      fieldErrors: null,
+      fields,
+      formError:
+        "Email/Password combination is incorrect",
     });
   }
   return createUserSession(user.id, redirectTo);
@@ -117,7 +114,7 @@ export default function Login() {
         <div className="flex justify-center min-h-full">
           <div className="flex-col w-100 h-100 p-10">
             <div className="m-10" data-light="">
-              <h3 className="text-lg text-center font-bold text-gray-600 my-4">Sign In</h3>
+              <h3 className="text-lg text-center font-bold my-4">Sign In</h3>
               <form method="post">
                 <input
                   type="hidden"
@@ -144,16 +141,16 @@ export default function Login() {
                           : undefined
                       }
                     />{actionData?.fieldErrors?.email ? (
-                        <p
-                          className="form-validation-error"
-                          role="alert"
-                          id="email-error"
-                        >
-                          {actionData.fieldErrors.email}
-                        </p>
-                      ) : null}
+                      <p
+                        className="form-validation-error"
+                        role="alert"
+                        id="email-error"
+                      >
+                        {actionData.fieldErrors.email}
+                      </p>
+                    ) : null}
                   </div>
-                  
+
                 </div>
                 <div className="py-3">
                   <label htmlFor="password-input" className="text-sm font-medium text-gray-700">Password</label>
@@ -174,14 +171,14 @@ export default function Login() {
                       }
                     />
                     {actionData?.fieldErrors?.password ? (
-                        <p
-                          className="form-validation-error"
-                          role="alert"
-                          id="password-error"
-                        >
-                          {actionData.fieldErrors.password}
-                        </p>
-                      ) : null}
+                      <p
+                        className="form-validation-error"
+                        role="alert"
+                        id="password-error"
+                      >
+                        {actionData.fieldErrors.password}
+                      </p>
+                    ) : null}
                   </div>
                 </div>
                 <div id="form-error-message">
@@ -200,7 +197,7 @@ export default function Login() {
               </form>
             </div>
             <div className="flex justify-center">
-              <span>Need an account? <Link to={"/createaccount" + (searchParams.get("redirectTo") != null ? "?redirectTo=" + searchParams.get("redirectTo") : "")} className="text-sky-800 underline">Sign up</Link></span>
+              <span>Need an portal? <Link to={"/create-portal" + (searchParams.get("redirectTo") != null ? "?redirectTo=" + searchParams.get("redirectTo") : "")} className="text-sky-800 underline">Sign up</Link></span>
             </div>
           </div>
         </div>

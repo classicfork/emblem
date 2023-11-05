@@ -16,29 +16,29 @@ export default function MemorialsPortal() {
   const data = useLoaderData<typeof loader>();
 
   return (
-    <main className="flex justify-center">
-      <div className="flex-col">
+    <main className="flex flex-col justify-center mx-auto">
+      <div className="flex justify-center">
         <h1 className="text-3xl pt-16 pb-4">Your Memorials</h1>
-          {data.memorials.length === 0 ? (
-            <p className="p-4">No memorials yet</p>
-          ) : (
-            <ol>
-              {data.memorials.map((memorial) => (
-                <div className="flex justify-center py-4" key={memorial.id}>
-                  <Link
-                    to={'../' + memorial.publicId}
-                  >
-                    <Chip className="flex scale-150"
-                      avatar={<Avatar alt="Natacha" src={`http://localhost:3000/${memorial.mainImage}`} />}
-                      label={memorial.name}
-                      variant="outlined"
-                    />
-                  </Link>
-                </div>
-              ))}
-            </ol>
-          )}
-        </div>
+      </div>
+      {data.memorials.length === 0 ? (
+        <p className="p-4">No memorials yet</p>
+      ) : (
+        <ol>
+          {data.memorials.map((memorial) => (
+            <div className="flex justify-center py-4" key={memorial.id}>
+              <Link
+                to={'../' + memorial.publicId}
+              >
+                <Chip className="flex scale-150"
+                  avatar={<Avatar alt={`${memorial.name}`} src={`http://localhost:3000/${memorial.mainImage}`} />}
+                  label={memorial.name}
+                  variant="outlined"
+                />
+              </Link>
+            </div>
+          ))}
+        </ol>
+      )}
     </main>
   );
 }
