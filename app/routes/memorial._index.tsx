@@ -23,7 +23,7 @@ export default function MemorialIndexRoute() {
           <Button size="small">Links</Button>
         </CardActions>
       </Card>
-      <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+      {/* <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
             <img
@@ -34,7 +34,7 @@ export default function MemorialIndexRoute() {
             />
           </ImageListItem>
         ))}
-      </ImageList>
+      </ImageList> */}
     </div>
   );
 }

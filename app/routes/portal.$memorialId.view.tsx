@@ -36,7 +36,7 @@ export default function MemorialPortalRoute() {
   console.log(data.memorial);
 
   return (
-    <main className="flex justify-center">
+    <main className="flex py-5 justify-center">
       <div>
         {data.memorial.obituary ? (
           <div className="flex-col items-center max-w-md px-3">
@@ -68,7 +68,7 @@ export default function MemorialPortalRoute() {
           </div>
         )}
         <div className="flex justify-center py-7">
-          <Link to={"/portal/" + params.memorialId + "/edit"} className="px-3 py-2 text-slate-700 rounded-lg bg-slate-400">{data.memorial.obituary ? "Edit" : "Create"}</Link>
+          <Link to={"/portal/" + params.memorialId + "/edit"} className="px-6 py-2 text-white rounded-lg bg-sky-500">{data.memorial.obituary ? "Edit" : "Create"}</Link>
         </div>
       </div>
     </main>

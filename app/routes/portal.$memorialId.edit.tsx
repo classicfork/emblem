@@ -1,5 +1,4 @@
-import { ActionArgs, LoaderArgs, unstable_composeUploadHandlers, unstable_createFileUploadHandler, unstable_createMemoryUploadHandler, unstable_parseMultipartFormData } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
+import { type ActionArgs, type LoaderArgs, json, redirect, unstable_composeUploadHandlers, unstable_createFileUploadHandler, unstable_createMemoryUploadHandler, unstable_parseMultipartFormData } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
 
 import { db } from "~/utils/db.server";
@@ -83,17 +82,19 @@ export default function EditMemorialRoute() {
           <Form method="post" encType="multipart/form-data">
             <div className="py-2">
               <label>
-                Name: <input type="text" name="name" defaultValue={data.memorial.name ? data.memorial.name : ""} className="w-full rounded border border-gray-500 px-2 py-1 text-lg"/>
+                Name: <input  type="text" name="name" defaultValue={data.memorial.name ? data.memorial.name : ""} className="w-full rounded border border-gray-500 px-2 py-1 text-lg"/>
               </label>
             </div>
-            <div className="py-2">
-              <label>
+            <div className="flex py-2">
+              <label className="flex justify-center w-64">
                 {data.memorial?.mainImage ? 
-                  (<img src={'http://localhost:3000/b.jpeg'} alt="Main"/>) : 
+                  (<img src={`http://localhost:3000/${data.memorial.mainImage}`} alt="Main"/>) : 
                   (<div></div>)
                 }
-                Image: <input type="file" id="mainImg" name="mainImage" accept="image/png, image/jpeg" />
               </label>
+            </div>
+            <div className="flex">
+              <span>Image: <input type="file" id="mainImg" name="mainImage" accept="image/png, image/jpeg" /></span>
             </div>
             <div className="py-2">
               <label>
@@ -111,7 +112,7 @@ export default function EditMemorialRoute() {
               </label>
             </div>
             <div>
-              <button type="submit" className="px-3 py-2 text-slate-700 rounded-lg bg-slate-400">
+              <button type="submit" className="px-3 py-2 text-white rounded-lg bg-sky-500">
                 Publish
               </button>
             </div>

@@ -1,15 +1,15 @@
 import type {
-    ActionArgs,
-  } from "@remix-run/node";
-  import {
-    Link,
-    useActionData,
-    useSearchParams,
-  } from "@remix-run/react";
+  ActionArgs,
+} from "@remix-run/node";
+import {
+  Link,
+  useActionData,
+  useSearchParams,
+} from "@remix-run/react";
 
-  import { db } from "~/utils/db.server";
-  import { badRequest } from "~/utils/request.server";
-  import { createUserSession, register } from "~/utils/session.server";
+import { db } from "~/utils/db.server";
+import { badRequest } from "~/utils/request.server";
+import { createUserSession, register } from "~/utils/session.server";
 
 function validateEmail(email: string) {
   const regex = new RegExp('^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,6})*$');
@@ -67,7 +67,7 @@ export const action = async ({ request }: ActionArgs) => {
   }
 
   const fields = { firstName, lastName, password, email };
-  
+
   const fieldErrors = {
     firstName: validateName(firstName),
     lastName: validateName(lastName),
@@ -92,7 +92,7 @@ export const action = async ({ request }: ActionArgs) => {
       formError: `User with email ${email} already exists`,
     });
   }
-  
+
   const user = await register({ firstName, lastName, email, password });
   if (!user) {
     return badRequest({
@@ -109,160 +109,151 @@ export default function Login() {
   const actionData = useActionData<typeof action>();
   const [searchParams] = useSearchParams();
   return (
-    <div>
-      <header className="flex items-center justify-between bg-slate-200 p-4 text-white">
-        <Link to="/" className="text-3xl font-bold text-gray-600">Memorial</Link>
-        <div></div>
-        <div></div>
-      </header>
-      <main>
-        <div className="flex min-h-full flex-col justify-center">
-          <div className="flex-col items-center content w-100 h-100 bg-slate-200 p-10">
-            <div className="m-10" data-light="">
-              <h1 className="text-3xl font-bold text-gray-600 place-self-center my-4">Create portal</h1>
-              <form method="post">
+    <main className="flex justify-center ">
+      <div className="flex flex-col justify-center">
+        <div className="flex-col items-center content w-100 h-100 p-10">
+          <h1 className="flex justify-center text-3xl font-bold text-gray-600 my-4">Create Account</h1>
+          <form method="post">
+            <input
+              type="hidden"
+              name="redirectTo"
+              value={
+                searchParams.get("redirectTo") ?? undefined
+              }
+            />
+            <div className="mt-3">
+              <label htmlFor="first-name-input" className="flex text-sm font-medium text-gray-700">First Name</label>
+              <div className="mt-1">
                 <input
-                  type="hidden"
-                  name="redirectTo"
-                  value={
-                    searchParams.get("redirectTo") ?? undefined
+                  type="text"
+                  className="flex rounded border border-gray-500 px-2 py-1 text-lg"
+                  id="first-name-input"
+                  name="first-name"
+                  defaultValue={actionData?.fields?.firstName}
+                  aria-invalid={Boolean(
+                    actionData?.fieldErrors?.firstName
+                  )}
+                  aria-errormessage={
+                    actionData?.fieldErrors?.firstName
+                      ? "first-name-error"
+                      : undefined
+                  }
+                />{actionData?.fieldErrors?.firstName ? (
+                  <p
+                    className="form-validation-error"
+                    role="alert"
+                    id="first-name-error"
+                  >
+                    {actionData.fieldErrors.firstName}
+                  </p>
+                ) : null}
+              </div>
+            </div>
+            <div className="mt-3">
+              <label htmlFor="last-name-input" className="flex text-sm font-medium text-gray-700">Last Name</label>
+              <div className="mt-1">
+                <input
+                  type="text"
+                  className="flex rounded border border-gray-500 px-2 py-1 text-lg"
+                  id="last-name-input"
+                  name="last-name"
+                  defaultValue={actionData?.fields?.lastName}
+                  aria-invalid={Boolean(
+                    actionData?.fieldErrors?.lastName
+                  )}
+                  aria-errormessage={
+                    actionData?.fieldErrors?.lastName
+                      ? "last-name-error"
+                      : undefined
+                  }
+                />{actionData?.fieldErrors?.lastName ? (
+                  <p
+                    className="form-validation-error"
+                    role="alert"
+                    id="last-name-error"
+                  >
+                    {actionData.fieldErrors.lastName}
+                  </p>
+                ) : null}
+              </div>
+            </div>
+            <div className="mt-3">
+              <label htmlFor="email-input" className="flex text-sm font-medium text-gray-700">Email address</label>
+              <div className="mt-1">
+                <input
+                  type="text"
+                  className="flex rounded border border-gray-500 px-2 py-1 text-lg"
+                  id="email-input"
+                  name="email"
+                  defaultValue={actionData?.fields?.email}
+                  aria-invalid={Boolean(
+                    actionData?.fieldErrors?.email
+                  )}
+                  aria-errormessage={
+                    actionData?.fieldErrors?.email
+                      ? "email-error"
+                      : undefined
+                  }
+                />{actionData?.fieldErrors?.email ? (
+                  <p
+                    className="form-validation-error"
+                    role="alert"
+                    id="email-error"
+                  >
+                    {actionData.fieldErrors.email}
+                  </p>
+                ) : null}
+              </div>
+
+            </div>
+            <div className="py-3">
+              <label htmlFor="password-input" className="flex text-sm font-medium text-gray-700">Password</label>
+              <div className="mt-1">
+                <input
+                  id="password-input"
+                  className="flex rounded border border-gray-500 px-2 py-1 text-lg"
+                  name="password"
+                  type="password"
+                  defaultValue={actionData?.fields?.password}
+                  aria-invalid={Boolean(
+                    actionData?.fieldErrors?.password
+                  )}
+                  aria-errormessage={
+                    actionData?.fieldErrors?.password
+                      ? "password-error"
+                      : undefined
                   }
                 />
-                <div>
-                  <label htmlFor="first-name-input" className="block text-sm font-medium text-gray-700">First Name</label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
-                      id="first-name-input"
-                      name="first-name"
-                      defaultValue={actionData?.fields?.firstName}
-                      aria-invalid={Boolean(
-                        actionData?.fieldErrors?.firstName
-                      )}
-                      aria-errormessage={
-                        actionData?.fieldErrors?.firstName
-                          ? "first-name-error"
-                          : undefined
-                      }
-                    />{actionData?.fieldErrors?.firstName ? (
-                        <p
-                          className="form-validation-error"
-                          role="alert"
-                          id="first-name-error"
-                        >
-                          {actionData.fieldErrors.firstName}
-                        </p>
-                      ) : null}
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="last-name-input" className="block text-sm font-medium text-gray-700">Last Name</label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
-                      id="last-name-input"
-                      name="last-name"
-                      defaultValue={actionData?.fields?.lastName}
-                      aria-invalid={Boolean(
-                        actionData?.fieldErrors?.lastName
-                      )}
-                      aria-errormessage={
-                        actionData?.fieldErrors?.lastName
-                          ? "last-name-error"
-                          : undefined
-                      }
-                    />{actionData?.fieldErrors?.lastName ? (
-                        <p
-                          className="form-validation-error"
-                          role="alert"
-                          id="last-name-error"
-                        >
-                          {actionData.fieldErrors.lastName}
-                        </p>
-                      ) : null}
-                  </div>
-                </div>
-                <div className="mt-3">
-                  <label htmlFor="email-input" className="block text-sm font-medium text-gray-700">Email address</label>
-                  <div className="mt-1">
-                    <input
-                      type="text"
-                      className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
-                      id="email-input"
-                      name="email"
-                      defaultValue={actionData?.fields?.email}
-                      aria-invalid={Boolean(
-                        actionData?.fieldErrors?.email
-                      )}
-                      aria-errormessage={
-                        actionData?.fieldErrors?.email
-                          ? "email-error"
-                          : undefined
-                      }
-                    />{actionData?.fieldErrors?.email ? (
-                        <p
-                          className="form-validation-error"
-                          role="alert"
-                          id="email-error"
-                        >
-                          {actionData.fieldErrors.email}
-                        </p>
-                      ) : null}
-                  </div>
-                  
-                </div>
-                <div className="py-3">
-                  <label htmlFor="password-input" className="block text-sm font-medium text-gray-700">Password</label>
-                  <div className="mt-1">
-                    <input
-                      id="password-input"
-                      className="w-full rounded border border-gray-500 px-2 py-1 text-lg"
-                      name="password"
-                      type="password"
-                      defaultValue={actionData?.fields?.password}
-                      aria-invalid={Boolean(
-                        actionData?.fieldErrors?.password
-                      )}
-                      aria-errormessage={
-                        actionData?.fieldErrors?.password
-                          ? "password-error"
-                          : undefined
-                      }
-                    />
-                    {actionData?.fieldErrors?.password ? (
-                        <p
-                          className="form-validation-error"
-                          role="alert"
-                          id="password-error"
-                        >
-                          {actionData.fieldErrors.password}
-                        </p>
-                      ) : null}
-                  </div>
-                </div>
-                <div id="form-error-message">
-                  {actionData?.formError ? (
-                    <p
-                      className="form-validation-error"
-                      role="alert"
-                    >
-                      {actionData.formError}
-                    </p>
-                  ) : null}
-                </div>
-                <button type="submit" className="button rounded bg-slate-400 px-4 py-2 text-blue-800 hover:bg-blue-500 active:bg-blue-600">
-                  Submit
-                </button>
-              </form>
+                {actionData?.fieldErrors?.password ? (
+                  <p
+                    className="form-validation-error"
+                    role="alert"
+                    id="password-error"
+                  >
+                    {actionData.fieldErrors.password}
+                  </p>
+                ) : null}
+              </div>
             </div>
-            <div className="flex justify-center">
-              <Link to={"/login" + (searchParams.get("redirectTo") != null ? "?redirectTo=" + searchParams.get("redirectTo") : "")} className="text-sky-800 underline">Already haven portal? Log in here</Link>
+            <div id="form-error-message">
+              {actionData?.formError ? (
+                <p
+                  className="form-validation-error"
+                  role="alert"
+                >
+                  {actionData.formError}
+                </p>
+              ) : null}
             </div>
-          </div>
+            <button type="submit" className="mt-2 rounded bg-blue-400 w-full px-6 py-2 text-center text-white hover:bg-blue-500 active:bg-blue-600">
+              Submit
+            </button>
+          </form>
         </div>
-      </main>
-    </div>
+        <div className="flex justify-center">
+          <span>Already have an account? <Link to={"/login" + (searchParams.get("redirectTo") != null ? "?redirectTo=" + searchParams.get("redirectTo") : "")} className="text-sky-800 underline">Log in here</Link></span>
+        </div>
+      </div>
+    </main>
   );
 }

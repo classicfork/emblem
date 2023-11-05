@@ -4,7 +4,7 @@ import type {
 import {
   Link,
   useActionData,
-  useSearchParams,
+  useSearchParams
 } from "@remix-run/react";
 
 import { badRequest } from "~/utils/request.server";
@@ -87,29 +87,6 @@ export default function Login() {
   const [searchParams] = useSearchParams();
   return (
     <div>
-      {/* <header>
-      <AppBar position="fixed">
-        <Toolbar className="flex justify-between">
-          <div className="flex">
-            <div>
-              <img className="wx-16 wy-16" src={'http://localhost:3000/emblem-light.png'} alt="emblem-logo" />
-            </div>
-            <MenuItem style={{ marginLeft: 18 }}>
-              <Link to={`/`}>Home</Link>
-            </MenuItem>
-            <MenuItem>
-              <Link to={`/products`}>Products</Link>
-            </MenuItem>
-            <MenuItem>
-              <Link to={`/story`}>Our Story</Link>
-            </MenuItem>
-            <MenuItem>
-              <Link to={`/faq`}>FAQ</Link>
-            </MenuItem>
-          </div>
-        </Toolbar>
-      </AppBar>
-      </header> */}
       <main>
         <div className="flex justify-center min-h-full">
           <div className="flex-col w-100 h-100 p-10">
@@ -197,7 +174,7 @@ export default function Login() {
               </form>
             </div>
             <div className="flex justify-center">
-              <span>Need an portal? <Link to={"/create-portal" + (searchParams.get("redirectTo") != null ? "?redirectTo=" + searchParams.get("redirectTo") : "")} className="text-sky-800 underline">Sign up</Link></span>
+              <span>Need an account? <Link to={"/create-account" + (searchParams.get("redirectTo") != null ? "?redirectTo=" + searchParams.get("redirectTo") : "")} className="text-sky-800 underline">Sign up</Link></span>
             </div>
           </div>
         </div>

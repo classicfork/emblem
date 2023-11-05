@@ -1,12 +1,11 @@
-import { ActionArgs, redirect } from "@remix-run/node";
-import { json } from "@remix-run/node";
-import { 
-  isRouteErrorResponse,
+import { json, redirect, type ActionArgs, type LoaderArgs } from "@remix-run/node";
+import {
   Form,
+  isRouteErrorResponse,
   useLoaderData,
   useParams,
-  useRouteError, } from "@remix-run/react";
-import type { LoaderArgs } from "@remix-run/node";
+  useRouteError,
+} from "@remix-run/react";
 
 import { db } from "~/utils/db.server";
 import { getUser, getUserId } from "~/utils/session.server";
@@ -25,9 +24,9 @@ export const loader = async ({ params, request }: LoaderArgs) => {
     });
   }
 
-  if (memorial.obituary) {
-    return redirect('../obituary');
-  }
+  // if (memorial.obituary) {
+  //   return redirect('../obituary');
+  // }
 
   console.log(memorial);
 
@@ -62,19 +61,19 @@ export default function MemorialRoute() {
           <label>
             First name(s): <input name="firstNames" type="text" className="w-full rounded border border-gray-500 px-2 py-1 text-lg"></input>
           </label>
-          <br/>
+          <br />
           <label>
             Last name(s): <input name="lastNames" type="text" className="w-full rounded border border-gray-500 px-2 py-1 text-lg"></input>
           </label>
-          <br/>
+          <br />
           <label>
             Verification code: <input name="qrVerificationCode" type="text" className="w-full rounded border border-gray-500 px-2 py-1 text-lg"></input>
           </label>
-          <br/>
+          <br />
           <div className="flex justify-center">
             <button type="submit" className="px-3 py-2 text-slate-700 rounded-lg bg-slate-400 my-2">Register</button>
           </div>
-          
+
         </Form>
       </div>
     );

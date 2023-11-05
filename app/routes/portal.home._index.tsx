@@ -25,11 +25,11 @@ export default function MemorialsPortal() {
       ) : (
         <ol>
           {data.memorials.map((memorial) => (
-            <div className="flex justify-center py-4" key={memorial.id}>
+            <div className="flex justify-center py-6" key={memorial.id}>
               <Link
                 to={'../' + memorial.publicId}
               >
-                <Chip className="flex scale-150"
+                <Chip className="flex scale-150 shadow-xl"
                   avatar={<Avatar alt={`${memorial.name}`} src={`http://localhost:3000/${memorial.mainImage}`} />}
                   label={memorial.name}
                   variant="outlined"
@@ -39,6 +39,13 @@ export default function MemorialsPortal() {
           ))}
         </ol>
       )}
+      {/* <div className="flex justify-end">
+        <Link to={`/memorial/${data.memorials[0].publicId}/register`}>
+          <button className="rounded-3xl bg-sky-500 text-white py-3 px-3">
+            + Register Memorial
+          </button>
+        </Link>
+      </div> */}
     </main>
   );
 }

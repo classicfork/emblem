@@ -1,7 +1,7 @@
 import { Avatar, MenuItem } from "@mui/material";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import { json, type LinksFunction, type LoaderArgs } from "@remix-run/node";
-import { Links, LiveReload, NavLink, Outlet, isRouteErrorResponse, useLoaderData, useRouteError } from "@remix-run/react";
+import { Links, LiveReload, NavLink, Outlet, Scripts, isRouteErrorResponse, useLoaderData, useRouteError } from "@remix-run/react";
 import { type PropsWithChildren } from "react";
 
 import stylesheet from "~/tailwind.css";
@@ -42,6 +42,8 @@ function Document({
   );
 }
 
+export const shouldRevalidate = () => false;
+
 export default function App() {
   const { user } = useLoaderData<typeof loader>();
   return (
@@ -53,31 +55,43 @@ export default function App() {
               <div>
                 <img className="pt-1 pl-4 wx-14 wy-14 w-5/6" src={'http://localhost:3000/emblem-light.png'} alt="emblem-logo" />
               </div>
-              <MenuItem style={{ marginLeft: 18 }}>
-                <NavLink style={{color: 'white'}} to={`/`}>Home</NavLink>
-              </MenuItem>
-              <MenuItem>
-                <NavLink style={{color: 'white'}} to={`/products`}>Products</NavLink>
-              </MenuItem>
-              <MenuItem>
-                <NavLink style={{color: 'white'}} to={`/story`}>Our Story</NavLink>
-              </MenuItem>
-              <MenuItem>
-                <NavLink style={{color: 'white'}} to={`/faq`}>FAQ</NavLink>
-              </MenuItem>
+              <NavLink style={{ color: 'white' }} to={`/`}>
+                <MenuItem style={{ marginLeft: 18 }}>
+                  Home
+                </MenuItem>
+              </NavLink>
+              <NavLink style={{ color: 'white' }} to={`/products`}>
+                <MenuItem>
+                  Products
+                </MenuItem>
+              </NavLink>
+              <NavLink style={{ color: 'white' }} to={`/story`}>
+                <MenuItem>
+                  Our Story
+                </MenuItem>
+              </NavLink>
+              <NavLink style={{ color: 'white' }} to={`/faq`}>
+                <MenuItem>
+                  FAQ
+                </MenuItem>
+              </NavLink>
             </div>
             <div className="flex justify-end">
               {user ?
                 <div className="flex">
-                  <MenuItem>
-                    <NavLink style={{color: 'white'}} to={`/portal/home`}>Profile</NavLink>
-                  </MenuItem>
-                  <Avatar style={{ backgroundColor: 'rgb(253, 126, 151)' }}>{user.firstName[0]}{user.lastName[0]}</Avatar>
+                  <NavLink style={{ color: 'white' }} to={`/portal/home`}>
+                    <MenuItem>
+                      Profile
+                    </MenuItem>
+                  </NavLink>
+                  <Avatar style={{ background: 'rgb(255,157,43)'}}>{user.firstName[0]}{user.lastName[0]}</Avatar>
                 </div>
                 :
-                <MenuItem>
-                  <NavLink style={{color: 'white'}} to={`/login`}>Sign In</NavLink>
-                </MenuItem>
+                <NavLink style={{ color: 'white' }} to={`/login`}>
+                  <MenuItem>
+                    Sign In
+                  </MenuItem>
+                </NavLink>
               }
             </div>
           </div>

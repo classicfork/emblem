@@ -2,7 +2,7 @@ import { json, redirect, type ActionArgs, type LoaderArgs } from "@remix-run/nod
 import { Form, Link, useActionData, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { badRequest } from "~/utils/request.server";
-import { getUser, getUserId, updateUserData } from "~/utils/session.server";
+import { getUser, updateUserNames, updateUserData } from "~/utils/session.server";
 
 function validateName(name: string) {
   if (name.length == 0) {
@@ -10,15 +10,14 @@ function validateName(name: string) {
   }
 }
 
-function validateEmail(email: string, oldEmail: string) {
+function validateEmail(email: string, user: any) {
   const regex = new RegExp('^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,6})*$');
-
-  if (email === oldEmail) {
-    return "this is the same email you already have";
-  }
+  debugger;
+  console.log(user);
+  console.log(email);
 
   if (!regex.test(email)) {
-    return "please provide a valid email"; // TODO: We should go about sending the email and having them validate it.
+    return "Please provide a valid email"; // TODO: We should go about sending the email and having them validate it.
   }
 }
 
@@ -32,7 +31,9 @@ export const loader = async ({ request, params }: LoaderArgs) => {
 }
 
 export const action = async ({ request, params }: ActionArgs) => {
-  const userId = await getUserId(request);
+  debugger;
+  const user = await getUser(request);
+
   const form = await request.formData();
 
   const firstName = form.get("first-name");
@@ -42,7 +43,7 @@ export const action = async ({ request, params }: ActionArgs) => {
   // probably not idea. better to do getUser instead?
   const oldEmail = form.get('oldEmail');
 
-  if (!userId) {
+  if (!user) {
     return badRequest({
       fieldErrors: null,
       fields: null,
@@ -74,7 +75,7 @@ export const action = async ({ request, params }: ActionArgs) => {
   const fieldErrors = {
     firstName: validateName(firstName),
     lastName: validateName(lastName),
-    email: validateEmail(email, oldEmail),
+    email: validateEmail(email, user),
   };
 
   if (Object.values(fieldErrors).some(Boolean)) {
@@ -86,9 +87,13 @@ export const action = async ({ request, params }: ActionArgs) => {
   }
 
   try {
-    if (typeof userId === "string") {
-      // const user = updateUserNames(userId, firstName, lastName, email);
-      await updateUserData(userId, firstName, lastName, email);
+    if (typeof user.id === "string") {
+      if (email === user.email) {
+        await updateUserNames(user.id, firstName, lastName);
+      }
+      else {
+        await updateUserData(user.id, firstName, lastName, email);
+      }
     } else {
       return badRequest({
         fieldErrors: null,
@@ -215,14 +220,14 @@ export default function ManageNameRoute() {
               role="alert"
               id="email-error"
             >
-              {actionData.fieldErrors.email}
+              <span className="text-red-500 text-sm">{actionData.fieldErrors.email}</span>
             </p>
           ) : null}
         </div>
         <div className="flex justify-between py-2">
           <button type="submit" className="flex button rounded bg-blue-400 px-6 py-2 text-white hover:bg-blue-500 active:bg-blue-600">Submit</button>
           <Link to={"/portal/manage-profile"}>
-            <button type="button" className="flex button rounded bg-blue-400 px-6 py-2 text-white hover:bg-blue-500 active:bg-blue-600">
+            <button type="button" className="flex border-x border-y border-sky-500 button rounded px-6 py-2 text-sky-500">
               Cancel
             </button>
           </Link>

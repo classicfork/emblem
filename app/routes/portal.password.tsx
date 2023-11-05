@@ -70,7 +70,9 @@ export const action = async ({ request, params }: ActionArgs) => {
   try {
     // const user = await updatePassword(userId, password);
     await updatePassword(userId, password);
-  } catch (e) {
+    
+  } 
+  catch (e) {
     console.log(e);
     if (e === "SAME PASSWORD") {
       console.log('hello');
@@ -90,7 +92,7 @@ export const action = async ({ request, params }: ActionArgs) => {
     });
   }
 
-  return redirect('../');
+  return redirect('/portal/manage-profile/password');
 }
 
 export default function ManagePasswordRoute() {
@@ -102,7 +104,7 @@ export default function ManagePasswordRoute() {
         <div className="py-2">
           <label htmlFor="new-password-input" className=" flex text-sm font-medium text-gray-700">New password</label>
           <input
-            type="text"
+            type="password"
             name="password"
             className="w-64 p-1 shadow-inner border border-sky-500"
             defaultValue={
