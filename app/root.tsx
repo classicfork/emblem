@@ -1,7 +1,7 @@
 import { Avatar, MenuItem } from "@mui/material";
 import { cssBundleHref } from "@remix-run/css-bundle";
 import { json, type LinksFunction, type LoaderArgs } from "@remix-run/node";
-import { Links, LiveReload, NavLink, Outlet, Scripts, isRouteErrorResponse, useLoaderData, useRouteError } from "@remix-run/react";
+import { Links, LiveReload, NavLink, Outlet, isRouteErrorResponse, useLoaderData, useRouteError } from "@remix-run/react";
 import { type PropsWithChildren } from "react";
 
 import stylesheet from "~/tailwind.css";
