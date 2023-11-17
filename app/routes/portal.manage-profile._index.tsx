@@ -12,7 +12,7 @@ export const loader = async ({ request, params }: LoaderArgs) => {
   return json({ user });
 }
 
-export default function ManageProfileIndexRoute() {
+export default function ManageProfileIndex() {
   const { user } = useLoaderData<typeof loader>();
   return (
     <main className="flex justify-start ml-56 mt-10">

@@ -1,12 +1,12 @@
-import { json, redirect } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import type { LoaderArgs } from "@remix-run/node";
+// import { json, redirect } from "@remix-run/node";
+// import { useLoaderData } from "@remix-run/react";
+// import type { LoaderArgs } from "@remix-run/node";
 
-import { db } from "~/utils/db.server";
-import { getUser } from "~/utils/session.server";
+// import { db } from "~/utils/db.server";
+// import { getUser } from "~/utils/session.server";
 
-export const loader = async ({ params, request }: LoaderArgs) => {
-  return redirect(`/memorial/${params.memorialId}`)
+// export const loader = async ({ params, request }: LoaderArgs) => {
+//   return redirect(`/memorial/${params.memorialId}`)
     // const user = await getUser(request);
     // const memorial = await db.memorial.findFirst({
     //   where: {
@@ -23,7 +23,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
     // console.log(memorial);
   
     // return json({ memorial, user });
-  };
+  // };
 
 // export default function MemorialLinkRoute() {
 //     const data = useLoaderData<typeof loader>();

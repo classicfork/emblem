@@ -1,10 +1,11 @@
-import { json, redirect } from "@remix-run/node";
+import { json, redirect, type LoaderArgs } from "@remix-run/node";
 import { 
   isRouteErrorResponse,
   useLoaderData,
   useParams,
-  useRouteError, } from "@remix-run/react";
-import type { LoaderArgs } from "@remix-run/node";
+  useRouteError,
+  useNavigate,
+ } from "@remix-run/react";
 
 import { db } from "~/utils/db.server";
 import { getUser } from "~/utils/session.server";
@@ -33,6 +34,7 @@ export const loader = async ({ params, request }: LoaderArgs) => {
 };
 
 export default function MemorialRoute() {
+  const navigate = useNavigate();
   const data = useLoaderData<typeof loader>();
   console.log(data.user);
   console.log(data.memorial.mainImage);
@@ -53,9 +55,9 @@ export default function MemorialRoute() {
             </h3>
           </div>
           <div className="flex justify-around py-4">
-            <p className="text-xl">1935</p>
+            <p className="text-xl">{data.memorial.birthDate}</p>
             <p>-</p>
-            <p className="text-xl">2017</p>
+            <p className="text-xl">{data.memorial.deathDate}</p>
           </div>
           <div className="text-justify  whitespace-pre-line">
             <p>
@@ -63,6 +65,9 @@ export default function MemorialRoute() {
             </p>
           </div>
         </div>
+        <button className="absolute bottom-12" onClick={() => navigate(`/memorial/${data.memorial.publicId}`)}>
+            Return to Memorial
+        </button>
       </div>
     );
   }

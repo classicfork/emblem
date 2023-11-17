@@ -24,7 +24,7 @@ export default function ProductsRoute() {
       {pricing && pricing.map((product: any) => (
         <Box key={product.publicId} className="shadow-xl my-20 mr-0 ml-20">
           <Box width={375} height={350} marginBottom={5} style={{ background: 'url(vine-background-small.png)', backgroundSize: '100%' }}>
-            <img src={'emblem-bronze.png'} alt="Emblem-Logo" style={{ transform: 'scale(0.2)' }} />
+            <img src={`emblem-${product.name.toLowerCase()}.png`} alt="Emblem-Logo" style={{ transform: 'scale(0.2)' }} />
             <Box display={'inline-flex'} >
               <Typography color={"rgb(0, 127, 255)"} variant={"h3"} fontWeight={700} letterSpacing={0.2} fontSize={'2.25rem'} marginTop={1} lineHeight={1.2}>{product.price}</Typography>
               <Typography variant={"body2"} paragraph={true} fontWeight={400} letterSpacing={0} fontSize={'0.875rem'} lineHeight={1.5} marginTop={2.5} marginLeft={0.5}>month</Typography>

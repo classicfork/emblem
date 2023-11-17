@@ -69,6 +69,10 @@ export default function MemorialPortalRoute() {
         )}
         <div className="flex justify-center py-7">
           <Link to={"/portal/" + params.memorialId + "/edit"} className="px-6 py-2 text-white rounded-lg bg-sky-500">{data.memorial.obituary ? "Edit" : "Create"}</Link>
+          {data.memorial.obituary ?
+            <Link to={"/memorial/" + params.memorialId} className="px-6 py-2 text-white rounded-lg bg-sky-500">View</Link> :
+            null
+          }
         </div>
       </div>
     </main>

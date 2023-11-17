@@ -25,6 +25,7 @@ model Memorial {
   id        String @id @default(uuid())
   publicId  String @unique
   name      String?
+  description String?
   mainImage String? 
   obituary  String?
   links     String?
@@ -52,3 +53,11 @@ model Pricing {
   visits    String
 }
 
+model MemorialImages {
+  id        String @id @default(uuid())
+  memorialId  String
+  fileName    String
+  name        String
+  description String
+  url         String
+}
